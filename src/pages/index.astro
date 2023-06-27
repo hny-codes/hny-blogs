@@ -8,7 +8,7 @@ const entries = await contentfulClient.getEntries<BlogPost>({
 });
 
 const posts = entries.items.map((item) => {
-	// @ts-ignore
+  // @ts-ignore
   const { title, date, description, slug } = item.fields;
   return {
     title,
