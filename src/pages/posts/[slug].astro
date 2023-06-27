@@ -1,7 +1,7 @@
 ---
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { contentfulClient } from '../../lib/contentful';
-
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { BlogPost } from '../../lib/contentful';
 
 export async function getStaticPaths() {
@@ -29,17 +29,8 @@ export async function getStaticPaths() {
 const { content, title, date } = Astro.props;
 ---
 
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>{title}</h1>
-    <time>{date}</time>
-    <article set:html={content} />
-  </body>
-</html>
+<BaseLayout pageTitle={title}>
+  <h1>{title}</h1>
+  <time>{date}</time>
+  <article set:html={content} />
+</BaseLayout>
