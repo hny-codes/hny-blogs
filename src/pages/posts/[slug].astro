@@ -5,15 +5,20 @@ import { contentfulClient } from '../../lib/contentful';
 import type { BlogPost } from '../../lib/contentful';
 
 export async function getStaticPaths() {
+  // @ts-ignore
   const entries = await contentfulClient.getEntries<BlogPost>({
     content_type: 'blogPost',
   });
 
   const pages = entries.items.map((item) => ({
+    // @ts-ignore
     params: { slug: item.fields.slug },
     props: {
+      // @ts-ignore
       title: item.fields.title,
+      // @ts-ignore
       content: documentToHtmlString(item.fields.content),
+      // @ts-ignore
       date: new Date(item.fields.date).toLocaleDateString(),
     },
   }));

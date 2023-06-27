@@ -2,11 +2,13 @@
 import { contentfulClient } from '../lib/contentful';
 import type { BlogPost } from '../lib/contentful';
 
+// @ts-ignore
 const entries = await contentfulClient.getEntries<BlogPost>({
   content_type: 'blogPost',
 });
 
 const posts = entries.items.map((item) => {
+	// @ts-ignore
   const { title, date, description, slug } = item.fields;
   return {
     title,
