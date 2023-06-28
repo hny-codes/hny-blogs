@@ -9,8 +9,8 @@ module.exports = {
       },
       keyframes: {
         hoverBar: {
-          '0%': { width: '0' },
-          '100%': { width: '90%' },
+          '0%': { width: '0', opacity: '1' },
+          '100%': { width: '90%', opacity: '1' },
         },
         popWeb: {
           '0%': { transform: 'scale(0) rotate(-30deg)', opacity: '1' },
@@ -34,7 +34,7 @@ module.exports = {
         },
       },
       animation: {
-        hoverBarAnim: 'hoverBar 0.3s ease-in forwards',
+        hoverBarAnim: 'hoverBar 0.3s ease-in 1s forwards',
         heroWeb: 'popWeb 0.3s cubic-bezier(.39,.87,.91,.48) 0.3s forwards',
         heroProgram:
           'popProgram 0.3s cubic-bezier(.39,.87,.91,.48) 0.6s forwards',
