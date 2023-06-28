@@ -22,25 +22,27 @@ const posts = entries.items.map((item) => {
 });
 
 // Filter for the latest 3 posts
-const latestPosts = posts.slice(0, 3); 
+const latestPosts = posts.slice(0, 3);
 const pageTitle = 'hny-blogs';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <Hero />
-  <div class="my-4">
-    <h1 class='text-3xl font-bold my-2 text-center'>Latest Posts</h1>
-    <ul class='px-4 py-2 divide-y divide-[hsl(var(--pc))] bg-base-200'>
-      {
-        latestPosts.map((post) => (
-          <PostItem
-            title={post.title}
-            date={post.date}
-            desc={post.description}
-            slug={`/posts/${post.slug}`}
-          />
-        ))
-      }
-    </ul>
+  <div class='py-10 mt-5 bg-base-200'>
+    <div class='max-w-xl mx-auto'>
+      <h1 class='text-3xl font-bold mb-4 text-center'>Latest Posts</h1>
+      <ul class='px-4 divide-y divide-[hsl(var(--pc))]'>
+        {
+          latestPosts.map((post) => (
+            <PostItem
+              title={post.title}
+              date={post.date}
+              desc={post.description}
+              slug={`/posts/${post.slug}`}
+            />
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </BaseLayout>
