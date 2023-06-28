@@ -21,6 +21,8 @@ const posts = entries.items.map((item) => {
   };
 });
 
+// Filter for the latest 3 posts
+const latestPosts = posts.slice(0, 3); 
 const pageTitle = 'hny-blogs';
 ---
 
@@ -30,7 +32,7 @@ const pageTitle = 'hny-blogs';
     <h1 class='text-3xl font-bold my-2 text-center'>Latest Posts</h1>
     <ul class='px-4 py-2 divide-y divide-[hsl(var(--pc))] bg-base-200'>
       {
-        posts.map((post) => (
+        latestPosts.map((post) => (
           <PostItem
             title={post.title}
             date={post.date}
