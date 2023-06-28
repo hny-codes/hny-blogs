@@ -2,7 +2,7 @@
 import { Image } from '@astrojs/image/components';
 ---
 
-<main class='hero'>
+<main class='hero mt-20'>
   <div class='relative'>
     <span
       class='absolute text-5xl drop-shadow-2xl font-bold rotate-[-30deg] left-4 top-16'
@@ -30,7 +30,13 @@ import { Image } from '@astrojs/image/components';
         </div>
       </div>
       <h1 class='drop-shadow-lg text-2xl px-4 py-2'>
-        Wecome! You stumbled upon my humble atelier!
+        <span class='font-bold relative transition'
+          >Welcome! <div
+            class='w-0 p-1 bg-primary absolute left-0 top-6 animate-hoverBarAnim'
+          >
+          </div>
+        </span>
+        You stumbled upon my humble atelier!
       </h1>
       <h2 class='line-through italic drop-shadow-lg px-4 py-2'>
         where I ramble about myself and my experiences

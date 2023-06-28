@@ -7,6 +7,15 @@ module.exports = {
       fontFamily: {
         sans: ['"Poppins"', 'sans-serif'],
       },
+      keyframes: {
+        hoverBar: {
+          '0%': { width: '0' },
+          '100%': { width: '90%' },
+        },
+      },
+      animation: {
+        hoverBarAnim: 'hoverBar 0.3s ease-in forwards',
+      },
     },
   },
   daisyui: {
