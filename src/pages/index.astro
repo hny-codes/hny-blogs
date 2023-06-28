@@ -2,6 +2,8 @@
 import { contentfulClient } from '../lib/contentful';
 import type { BlogPost } from '../lib/contentful';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PostItem from '../components/PostItem.astro';
 
 // @ts-ignore
 const entries = await contentfulClient.getEntries<BlogPost>({
@@ -23,18 +25,20 @@ const pageTitle = 'hny-blogs';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h1>Astro</h1>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/posts/${post.slug}`}>
-            <h2>{post.title}</h2>
-          </a>
-          <time>{post.date}</time>
-          <p>{post.description}</p>
-        </li>
-      ))
-    }
-  </ul>
+  <Hero />
+  <div class="my-4">
+    <h1 class='text-3xl font-bold my-2 text-center'>Latest Posts</h1>
+    <ul class='px-4 py-2 divide-y divide-[hsl(var(--pc))] bg-base-200'>
+      {
+        posts.map((post) => (
+          <PostItem
+            title={post.title}
+            date={post.date}
+            desc={post.description}
+            slug={`/posts/${post.slug}`}
+          />
+        ))
+      }
+    </ul>
+  </div>
 </BaseLayout>
