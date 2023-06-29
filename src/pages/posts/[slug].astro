@@ -3,8 +3,20 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { BlogPost } from '../../lib/contentful';
+import { BLOCKS } from '@contentful/rich-text-types';
 
 export async function getStaticPaths() {
+  // REFERENCE: https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/
+  const renderOptions = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) =>
+        `<img src=https:${node.data.target.fields.file.url} 
+        height=${node.data.target.fields.file.details.image.height} 
+        width=${node.data.target.fields.file.details.image.width} 
+        alt=${node.data.target.fields.description} />`,
+    },
+  };
+
   // @ts-ignore
   const entries = await contentfulClient.getEntries<BlogPost>({
     content_type: 'blogPost',
@@ -17,7 +29,7 @@ export async function getStaticPaths() {
       // @ts-ignore
       title: item.fields.title,
       // @ts-ignore
-      content: documentToHtmlString(item.fields.content),
+      content: documentToHtmlString(item.fields.content, renderOptions),
       // @ts-ignore
       date: new Date(item.fields.date).toLocaleDateString(),
     },
