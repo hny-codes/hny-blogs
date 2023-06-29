@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { contentfulClient } from '../../lib/contentful';
+import type { BlogPost } from '../../lib/contentful';
+import PostItem from '../../components/PostItem.astro';
+
+// Create pagination paths for posts
+export async function getStaticPaths({ paginate }: any) {
+  // @ts-ignore
+  const entries = await contentfulClient.getEntries<BlogPost>({
+    content_type: 'blogPost',
+  });
+
+  const posts = entries.items.map((item) => {
+    // @ts-ignore
+    const { title, date, description, slug } = item.fields;
+    return {
+      title,
+      slug,
+      description,
+      date: new Date(date).toLocaleDateString(),
+    };
+  });
+
+  return paginate(posts, { pageSize: 5 });
+}
+
+const pageTitle = 'hny-blogs | Posts';
+
+//Paginated data passed to page prop
+const { page } = Astro.props;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <main class='mt-20'>
+    <div class='px-6 sm:px-2 pb-6 max-w-xl mx-auto'>
+      <div class='flex justify-between items-center mb-2'>
+        <h1 class='font-bold text-3xl relative'>
+          All Posts <div
+            class='w-0 p-1 opacity-0 bg-primary absolute left-0 top-8 sm:top-9 animate-hoverBarAnim'
+          >
+          </div>
+        </h1>
+        <h2 class='font-bold'>Page {page.currentPage}</h2>
+      </div>
+      <p class='italic'>A list of all of my tangents</p>
+    </div>
+    <!-- TODO - Pagination Buttons -->
+    <!-- {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+    {page.url.next ? <a href={page.url.next}>Next</a> : null} -->
+    <ul class='px-4 divide-y divide-[hsl(var(--pc))] bg-base-200 py-4'>
+      <div class='max-w-xl mx-auto'>
+        {
+          page.data.map(({ title, slug, description, date }: BlogPost) => (
+            <PostItem
+              title={title}
+              date={date}
+              desc={description}
+              slug={`/posts/${slug}`}
+            />
+          ))
+        }
+      </div>
+    </ul>
+  </main>
+</BaseLayout>
