@@ -34,9 +34,9 @@ export async function getStaticPaths() {
         `<blockquote class='pl-2 my-4 border-l-4 border-[hsl(var(--p))] italic'>
           ${node.content[0].content[0].value}
         </blockquote>`,
-      [BLOCKS.OL_LIST]: (node: any) => {
+      [BLOCKS.OL_LIST]: (node: any) => {    
         return node.content
-          .map((item) => {
+          .map((item: any) => {
             const data = item.content[0].content[1].data;
             const value = item.content[0].content[1].content[0].value;
 
