@@ -41,12 +41,12 @@ export async function getStaticPaths() {
             const value = item.content[0].content[1].content[0].value;
 
             return Object.keys(data).length !== 0
-              ? `<li class='list-decimal ml-4 my-2'>
+              ? `<li class='list-decimal ml-4 my-2 text-sm'>
                 <a href=${data.uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))]'>
                   ${value}
                 </a>
               </li>`
-              : `<li class='list-decimal ml-4 my-2'>
+              : `<li class='list-decimal ml-4 my-2 text-sm'>
                 ${value}
               </li>`;
           })
