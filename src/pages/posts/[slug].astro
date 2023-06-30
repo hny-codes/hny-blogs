@@ -62,7 +62,13 @@ const { content, title, date } = Astro.props;
 <BaseLayout pageTitle={title}>
   <div class='my-20 max-w-xl mx-auto px-6 sm:px-2'>
     <div class='mb-10'>
-      <h1 class='font-bold text-3xl sm:text-4xl'>{title}</h1>
+      <h1 class='font-bold text-3xl sm:text-4xl relative w-fit pb-2'>
+        {title}
+        <div
+          class='w-0 p-1 opacity-0 bg-primary absolute left-0 top-8 sm:top-9 animate-hoverBarAnim'
+        >
+        </div>
+      </h1>
       <time class='font-semibold'>{date}</time>
     </div>
     <article class='' set:html={content} />
