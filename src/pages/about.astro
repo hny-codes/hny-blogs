@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from '@astrojs/image/components';
+
+const pageTitle = 'hny-blogs | About';
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <main class='mt-20'>
+    <div class='max-w-xl mx-auto flex flex-col items-center'>
+      <div class='avatar'>
+        <div class='w-56 rounded-full'>
+          <Image
+            src={'/profile.jpg'}
+            aspectRatio={'1:1'}
+            format='webp'
+            width={300}
+            height={300}
+            alt='profile picture'
+          />
+        </div>
+      </div>
+      <article class=''>
+        <header class='text-center relative'>
+          <h1 class='text-3xl font-bold pb-3'>Welcome to my blog!</h1>
+          <h2 class='text-sm w-3/4 mx-auto italic class'>
+            If you haven't yet, check out my <a
+              href='https://hny-codes.com'
+              target='_blank'
+              class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'
+              >portfolio about</a
+            >, <span class='line-through'>shameless plug</span>
+          </h2>
+          <div
+            class='w-fit p-1 opacity-0 bg-primary absolute left-5 top-9 sm:top-9 animate-hoverBarAnim'
+          >
+          </div>
+        </header>
+        <div class='p-4 my-6'>
+          <p class='py-2'>
+            Sleep, eat, <span class='line-through'>game</span> program, the usual
+            shindig. I live for RPGs and am always in the hunt for new adventures.
+          </p>
+          <p class='py-2'>
+            Expect all sorts of ramblings on this blog, especially on my
+            <span class='font-bold'>experiences</span> learning new tooling, languages,
+            libraries, etc.
+          </p>
+        </div>
+      </article>
+    </div>
+  </main>
+</BaseLayout>
