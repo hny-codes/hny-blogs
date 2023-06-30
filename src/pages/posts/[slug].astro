@@ -3,14 +3,16 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { BlogPost } from '../../lib/contentful';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
 export async function getStaticPaths() {
   // REFERENCE: https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/
   const renderOptions = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node: any) =>
-        `<img src=https:${node.data.target.fields.file.url} 
+        `<img 
+        class='my-4'
+        src=https:${node.data.target.fields.file.url} 
         height=${node.data.target.fields.file.details.image.height} 
         width=${node.data.target.fields.file.details.image.width} 
         alt=${node.data.target.fields.description} />`,
@@ -22,6 +24,12 @@ export async function getStaticPaths() {
         `<h2 class='font-bold text-xl'>
             ${node.content[0].value}
         </h2>`,
+      [INLINES.HYPERLINK]: (node: any) =>
+        `<a 
+          href=${node.content[0].value}
+          class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))]'
+        >
+          ${node.content[0].value}</a>`,
     },
   };
 
