@@ -27,7 +27,7 @@ export async function getStaticPaths() {
       [INLINES.HYPERLINK]: (node: any) =>
         `<a 
           href=${node.content[0].value}
-          class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))]'
+          class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'
         >
           ${node.content[0].value}</a>`,
       [BLOCKS.QUOTE]: (node: any) =>
@@ -42,7 +42,7 @@ export async function getStaticPaths() {
 
             return Object.keys(data).length !== 0
               ? `<li class='list-decimal ml-4 my-2 text-sm'>
-                <a href=${data.uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))]'>
+                <a href=${data.uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'>
                   ${value}
                 </a>
               </li>`
