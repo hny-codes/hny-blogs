@@ -30,6 +30,10 @@ export async function getStaticPaths() {
           class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))]'
         >
           ${node.content[0].value}</a>`,
+      [BLOCKS.QUOTE]: (node: any) =>
+        `<blockquote class='pl-2 my-4 border-l-4 border-[hsl(var(--p))] italic'>
+          ${node.content[0].content[0].value}
+        </blockquote>`,
     },
   };
 
