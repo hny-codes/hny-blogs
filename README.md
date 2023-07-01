@@ -1,47 +1,37 @@
-# Astro Starter Kit: Minimal
+# Hny-Blogs
+A personal blog, created with Astro and Contentful
 
-```
-npm create astro@latest -- --template minimal
-```
+## Table of Contents
+- [Purpose](#purpose)
+- [Setup](#setup)
+- [Built with](#built-with)
+- [Useful Resources](#useful-resources)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Purpose
+The purpose of this project is to create a personal blog while trying out [Contentful CMS](https://www.contentful.com/). Creating this project allowed me to learn more about content management systems (CMS) and get familiar with using one. In addition, this project allowed me to practice creating websites utilizing the Astro framework and the power behind it, such as built-in pagination and dynamic routes.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Setup
 
-## 🚀 Project Structure
+Upon cloning this repo, install it using your preferred package manager, like so: 
 
-Inside of your Astro project, you'll see the following folders and files:
+`$ npm install`
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Afterwards, run the project in dev mode:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+`$ npm run dev`
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+and that's it!
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Built with
+- Typescript (Vanilla)
+- [Astro](https://astro.build/)
+- [Contentful](https://www.contentful.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Useful Resources
+- [Rendering Assets and Entries in Contentful](https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/)
+- [Rich Text monorepo for convering Contentful documents](https://github.com/contentful/rich-text)
+- [DaisyUI Documentation](https://daisyui.com/docs/use/)
+- [Tailwind Documentation](https://tailwindcss.com/docs/installation)
+- [Contentful Integration with Astro](https://docs.astro.build/en/guides/cms/contentful/)
