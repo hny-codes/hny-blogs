@@ -10,9 +10,13 @@ const { title, date, desc, slug } = Astro.props;
       <h2 class='font-bold'>{title}</h2>
       <time class='font-bold'>{date}</time>
     </div>
-    <div class="flex justify-between">
+    <div class='flex justify-between'>
       <p class='max-w-[75%] px-1'>{desc}</p>
-      <p class="text-3xl relative right-4 group-hover:transition-all group-hover:right-2">➜</p>
+      <p
+        class='text-3xl relative right-4 group-hover:transition-all group-hover:right-2 group-hover:text-[hsl(var(--a))] group-active:text-[hsl(var(--af))]'
+      >
+        ➜
+      </p>
     </div>
   </a>
 </li>
