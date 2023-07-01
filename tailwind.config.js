@@ -17,14 +17,14 @@ module.exports = {
           '100%': { width: '95%', opacity: '1' },
         },
         popWeb: {
-          '0%': { transform: 'scale(0) rotate(-30deg)', opacity: '1' },
-          '80%': { transform: 'scale(1.5) rotate(-30deg) ', opacity: '1' },
-          '100%': { transform: 'scale(1) rotate(-30deg) ', opacity: '1' },
+          '0%': { transform: 'scale(0) rotate(-10deg)', opacity: '1' },
+          '80%': { transform: 'scale(1.5) rotate(-10deg) ', opacity: '1' },
+          '100%': { transform: 'scale(1) rotate(-10deg) ', opacity: '1' },
         },
         popProgram: {
-          '0%': { transform: 'scale(0) rotate(30deg)', opacity: '1' },
-          '80%': { transform: 'scale(1.5) rotate(30deg) ', opacity: '1' },
-          '100%': { transform: 'scale(1) rotate(30deg) ', opacity: '1' },
+          '0%': { transform: 'scale(0)', opacity: '1' },
+          '80%': { transform: 'scale(1.5)', opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
         },
         popLife: {
           '0%': { transform: 'scale(0) rotate(10deg)', opacity: '1' },
@@ -37,12 +37,12 @@ module.exports = {
           '100%': { transform: 'scale(1) ', opacity: '1' },
         },
         webHover: {
-          '0%, 100%': { transform: 'translateY(0px) rotate(-30deg)' },
-          '50%': { transform: 'translateY(10px) rotate(-30deg)' },
+          '0%, 100%': { transform: 'translateY(0px) rotate(-10deg)' },
+          '50%': { transform: 'translateY(10px) rotate(-10deg)' },
         },
         programHover: {
-          '0%, 100%': { transform: 'translateY(0px) rotate(30deg)' },
-          '50%': { transform: 'translateY(10px) rotate(30deg)' },
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(10px)' },
         },
         lifeHover: {
           '0%, 100%': { transform: 'translateY(0px) rotate(10deg)' },
