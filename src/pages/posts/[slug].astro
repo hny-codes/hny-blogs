@@ -35,7 +35,7 @@ export async function getStaticPaths() {
           ${node.content[0].content[0].value}
         </blockquote>`,
       [BLOCKS.OL_LIST]: (node: any) => {
-        return `<ol>${node.content
+        return `<ol class='my-6'>${node.content
           .map((item: any) => {
             const data = item.content[0].content[1].data;
             const value = item.content[0].content[1].content[0].value;
