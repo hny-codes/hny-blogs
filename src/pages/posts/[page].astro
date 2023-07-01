@@ -48,8 +48,8 @@ const { page } = Astro.props;
     <!-- TODO - Pagination Buttons -->
     <!-- {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
     {page.url.next ? <a href={page.url.next}>Next</a> : null} -->
-    <ul class='px-4 divide-y divide-[hsl(var(--pc))] bg-base-200 py-4'>
-      <div class='max-w-xl mx-auto'>
+    <div class='bg-base-200'>
+      <ul class='px-4 sm:px-1 divide-y divide-[hsl(var(--pc))] max-w-xl mx-auto py-4'>
         {
           page.data.map(({ title, slug, description, date }: BlogPost) => (
             <PostItem
@@ -60,7 +60,7 @@ const { page } = Astro.props;
             />
           ))
         }
-      </div>
-    </ul>
+      </ul>
+    </div>
   </main>
 </BaseLayout>
