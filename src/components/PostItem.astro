@@ -3,13 +3,16 @@ const { title, date, desc, slug } = Astro.props;
 ---
 
 <li
-  class='py-2 hover:scale-105 hover:shadow-xl transition active:hover:scale-100'
+  class='py-2 hover:scale-105 hover:shadow-xl transition active:hover:scale-100 group relative'
 >
   <a href={slug} class=''>
     <div class='flex justify-between pb-2 px-1'>
       <h2 class='font-bold'>{title}</h2>
       <time class='font-bold'>{date}</time>
     </div>
-    <p class='max-w-[80%] px-1'>{desc}</p>
+    <div class="flex justify-between">
+      <p class='max-w-[75%] px-1'>{desc}</p>
+      <p class="text-3xl relative right-4 group-hover:transition-all group-hover:right-2">➜</p>
+    </div>
   </a>
 </li>
