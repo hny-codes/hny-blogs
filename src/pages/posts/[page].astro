@@ -3,22 +3,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { contentfulClient } from '../../lib/contentful';
 import type { BlogPost } from '../../lib/contentful';
 import PostItem from '../../components/PostItem.astro';
+import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
 // Create pagination paths for posts
 export async function getStaticPaths({ paginate }: any) {
-  // @ts-ignore
-  const entries = await contentfulClient.getEntries<BlogPost>({
+  const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
     content_type: 'blogPost',
   });
 
   const posts = entries.items.map((item) => {
-    // @ts-ignore
     const { title, date, description, slug } = item.fields;
     return {
       title,
       slug,
       description,
-      date: new Date(date).toLocaleDateString(),
+      date: date,
     };
   });
 
@@ -49,7 +48,9 @@ const { page } = Astro.props;
     <!-- {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
     {page.url.next ? <a href={page.url.next}>Next</a> : null} -->
     <div class='bg-base-200'>
-      <ul class='px-4 sm:px-1 divide-y divide-[hsl(var(--pc))] max-w-xl mx-auto py-4'>
+      <ul
+        class='px-4 sm:px-1 divide-y divide-[hsl(var(--pc))] max-w-xl mx-auto py-4'
+      >
         {
           page.data.map(({ title, slug, description, date }: BlogPost) => (
             <PostItem
