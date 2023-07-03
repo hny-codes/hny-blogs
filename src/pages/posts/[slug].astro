@@ -1,15 +1,19 @@
 ---
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import {
+  documentToHtmlString,
+  Options,
+} from '@contentful/rich-text-html-renderer';
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { BlogPost } from '../../lib/contentful';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
 export async function getStaticPaths() {
   // REFERENCE: https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/
-  const renderOptions = {
+  const renderOptions: Partial<Options> = {
     renderNode: {
-      [BLOCKS.EMBEDDED_ASSET]: (node: any) =>
+      [BLOCKS.EMBEDDED_ASSET]: (node) =>
         `<img 
         class='my-4'
         src=https:${node.data.target.fields.file.url} 
@@ -62,22 +66,15 @@ export async function getStaticPaths() {
     },
   };
 
-  // @ts-ignore
-  const entries = await contentfulClient.getEntries<BlogPost>({
+  const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
     content_type: 'blogPost',
   });
 
-  // console.log(JSON.stringify(entries.items));
-
   const pages = entries.items.map((item) => ({
-    // @ts-ignore
     params: { slug: item.fields.slug },
     props: {
-      // @ts-ignore
       title: item.fields.title,
-      // @ts-ignore
       content: documentToHtmlString(item.fields.content, renderOptions),
-      // @ts-ignore
       date: new Date(item.fields.date).toLocaleDateString(),
     },
   }));
