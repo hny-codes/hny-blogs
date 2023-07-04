@@ -15,7 +15,7 @@ import {
   Hyperlink,
 } from '@contentful/rich-text-types';
 // REFERENCE: https://github.com/contentful/rich-text/issues/395
-import crtt from '@contentful/rich-text-types'
+import crtt from '@contentful/rich-text-types';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
 export async function getStaticPaths() {
@@ -46,7 +46,8 @@ export async function getStaticPaths() {
         </h2>`,
       [INLINES.HYPERLINK]: (node) =>
         `<a 
-          href=${(node.content[0] as Text).value}
+          href=${node.data.uri}
+          target='_blank'
           class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'
         >
           ${(node.content[0] as Text).value}</a>`,
