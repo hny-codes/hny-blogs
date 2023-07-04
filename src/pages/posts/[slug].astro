@@ -13,15 +13,16 @@ import {
   ListItem,
   ListItemBlock,
   Hyperlink,
-  MARKS,
 } from '@contentful/rich-text-types';
+// REFERENCE: https://github.com/contentful/rich-text/issues/395
+import crtt from '@contentful/rich-text-types'
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
 export async function getStaticPaths() {
   // REFERENCE: https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/
   const renderOptions: Partial<Options> = {
     renderMark: {
-      [MARKS.CODE]: (text) => {
+      [crtt.MARKS.CODE]: (text) => {
         return `<div class='mockup-code'>
                   <pre data-prefix="$"><code>${text}</code></pre>
                 </div>`;
