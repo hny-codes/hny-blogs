@@ -6,7 +6,15 @@ import {
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { BlogPost } from '../../lib/contentful';
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import {
+  BLOCKS,
+  INLINES,
+  Text,
+  Paragraph,
+  ListItem,
+  ListItemBlock,
+  Hyperlink,
+} from '@contentful/rich-text-types';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
 export async function getStaticPaths() {
@@ -20,33 +28,41 @@ export async function getStaticPaths() {
         height=${node.data.target.fields.file.details.image.height} 
         width=${node.data.target.fields.file.details.image.width} 
         alt=${node.data.target.fields.description} />`,
-      [BLOCKS.HEADING_1]: (node: any) =>
+      [BLOCKS.HEADING_1]: (node) =>
         `<h1 class='font-bold text-2xl mt-6'>
-          ${node.content[0].value}
+          ${(node.content[0] as Text).value}
         </h1>`,
-      [BLOCKS.HEADING_2]: (node: any) =>
+      [BLOCKS.HEADING_2]: (node) =>
         `<h2 class='font-bold text-xl mt-6'>
-            ${node.content[0].value}
+            ${(node.content[0] as Text).value}
         </h2>`,
-      [INLINES.HYPERLINK]: (node: any) =>
+      [INLINES.HYPERLINK]: (node) =>
         `<a 
-          href=${node.content[0].value}
+          href=${(node.content[0] as Text).value}
           class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'
         >
-          ${node.content[0].value}</a>`,
-      [BLOCKS.QUOTE]: (node: any) =>
-        `<blockquote class='pl-2 my-4 border-l-4 border-[hsl(var(--p))] italic'>
-          ${node.content[0].content[0].value}
-        </blockquote>`,
-      [BLOCKS.OL_LIST]: (node: any) => {
-        return `<ol class='my-6'>${node.content
-          .map((item: any) => {
-            const data = item.content[0].content[1].data;
-            const value = item.content[0].content[1].content[0].value;
+          ${(node.content[0] as Text).value}</a>`,
+      [BLOCKS.QUOTE]: (node) => {
+        const data = node.content[0] as Paragraph;
+        const text = data.content[0] as Text;
+        return `<blockquote class='pl-2 my-4 border-l-4 border-[hsl(var(--p))] italic'>
+          ${text.value}
+        </blockquote>`;
+      },
+      [BLOCKS.OL_LIST]: (node) => {
+        return `<ol class='my-6'>${(node.content as ListItem[])
+          .map((item) => {
+            // Type declarations
+            const listItemBlock = item.content[0] as ListItemBlock;
+            const liBlockEnum = listItemBlock.content[1];
+            const hyperlink = liBlockEnum as Hyperlink;
+            const data = hyperlink.data;
+            const uri = hyperlink.data.uri;
+            const value = (hyperlink.content[0] as Text).value;
 
             return Object.keys(data).length !== 0
               ? `<li class='list-decimal ml-4 my-4 text-sm'>
-                <a href=${data.uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'>
+                <a href=${uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'>
                   ${value}
                 </a>
               </li>`
@@ -56,10 +72,13 @@ export async function getStaticPaths() {
           })
           .join('')}</ol>`;
       },
-      [BLOCKS.UL_LIST]: (node: any) => {
-        return `<ul class='my-6'>${node.content
-          .map((item: any) => {
-            return `<li class='list-disc ml-4 my-4 text-sm'>${item.content[0].content[0].value}</li>`;
+      [BLOCKS.UL_LIST]: (node) => {
+        return `<ul class='my-6'>${(node.content as ListItem[])
+          .map((item) => {
+            const listItemBlock = item.content[0] as ListItemBlock;
+            const text = listItemBlock.content[0] as Text;
+            const value = text.value;
+            return `<li class='list-disc ml-4 my-4 text-sm'>${value}</li>`;
           })
           .join('')}</ul>`;
       },
