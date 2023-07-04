@@ -5,15 +5,28 @@ import Footer from '../components/Footer.astro';
 const { pageTitle } = Astro.props;
 ---
 
-<html lang='en' data-theme="retro">
+<html lang='en'>
   <head>
+    <script is:inline>
+      if (localStorage.getItem('theme') === null) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else
+        document.documentElement.setAttribute(
+          'data-theme',
+          localStorage.getItem('theme')
+        );
+    </script>
+    <script>
+      import { themeChange } from 'theme-change';
+      themeChange();
+    </script>
     <meta charset='utf-8' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body class="relative">
+  <body class='relative'>
     <Navbar />
     <slot />
     <Footer />
