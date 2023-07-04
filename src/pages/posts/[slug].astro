@@ -13,12 +13,20 @@ import {
   ListItem,
   ListItemBlock,
   Hyperlink,
+  MARKS,
 } from '@contentful/rich-text-types';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
 export async function getStaticPaths() {
   // REFERENCE: https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/
   const renderOptions: Partial<Options> = {
+    renderMark: {
+      [MARKS.CODE]: (text) => {
+        return `<div class='mockup-code'>
+                  <pre data-prefix="$"><code>${text}</code></pre>
+                </div>`;
+      },
+    },
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) =>
         `<img 
