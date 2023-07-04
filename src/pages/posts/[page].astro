@@ -17,7 +17,7 @@ export async function getStaticPaths({ paginate }: any) {
       title,
       slug,
       description,
-      date: date,
+      date: new Date(date).toLocaleDateString(),
     };
   });
 
