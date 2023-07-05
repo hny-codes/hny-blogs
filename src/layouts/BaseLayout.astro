@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import ThemeSwap from '../components/ThemeSwap';
 
 const { pageTitle } = Astro.props;
 ---
@@ -28,6 +29,7 @@ const { pageTitle } = Astro.props;
   </head>
   <body class='relative'>
     <Navbar />
+    <ThemeSwap client:load />
     <slot />
     <Footer />
   </body>
