@@ -63,20 +63,23 @@ export async function getStaticPaths() {
           .map((item) => {
             // Type declarations
             const listItemBlock = item.content[0] as ListItemBlock;
+
+            // Uri of the OL item
             const liBlockEnum = listItemBlock.content[1];
             const hyperlink = liBlockEnum as Hyperlink;
-            const data = hyperlink.data;
-            const uri = hyperlink.data.uri;
-            const value = (hyperlink.content[0] as Text).value;
 
-            return Object.keys(data).length !== 0
+            // Text value of the OL item
+            const text = listItemBlock.content[0] as Text;
+
+            // If the OL item has a uri, render with an anchor, otherwise a regular list item
+            return (listItemBlock.content[1] as Hyperlink)
               ? `<li class='list-decimal ml-4 my-4 text-sm'>
-                <a href=${uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'>
-                  ${value}
+                <a href=${hyperlink.data.uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'>
+                  ${hyperlink.content[0].value}
                 </a>
               </li>`
               : `<li class='list-decimal ml-4 my-2 text-sm'>
-                ${value}
+                ${text.value}
               </li>`;
           })
           .join('')}</ol>`;
@@ -114,8 +117,10 @@ const { content, title, date } = Astro.props;
 ---
 
 <BaseLayout pageTitle={title}>
-  <div class='my-20 max-w-3xl mx-auto px-6 sm:px-2 bg-base-300 text-[hsl(var(--bc))] rounded-2xl'>
-    <div class='mb-10 relative pt-6 sm:p-6 '>
+  <div
+    class='my-20 max-w-3xl mx-auto px-6 sm:px-2 bg-base-300 text-[hsl(var(--bc))] rounded-2xl'
+  >
+    <div class='mb-10 relative pt-6 sm:p-6'>
       <h1 class='font-bold text-3xl sm:text-4xl w-fit pb-2'>
         {title}
       </h1>
