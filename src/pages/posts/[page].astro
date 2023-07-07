@@ -24,6 +24,12 @@ export async function getStaticPaths({ paginate }: any) {
   return paginate(posts, { pageSize: 5 });
 }
 
+// Get total entries from CMS
+const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
+  content_type: 'blogPost',
+});
+const count = entries.total;
+
 const pageTitle = 'hny-blogs | Posts';
 
 //Paginated data passed to page prop
@@ -42,7 +48,12 @@ const { page } = Astro.props;
         </h1>
         <h2 class='font-bold'>Page {page.currentPage}</h2>
       </div>
-      <p class='italic'>A list of all of my tangents</p>
+      <p class='italic'>
+        A list of all of my <span
+          class='font-black text-4xl text-[hsl(var(--p))] px-1'
+          id='post-count'>{count}</span
+        > tangents
+      </p>
     </div>
     <!-- TODO - Pagination Buttons -->
     <!-- {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
@@ -65,3 +76,28 @@ const { page } = Astro.props;
     </div>
   </main>
 </BaseLayout>
+
+<script>
+  let counter = document.getElementById('post-count');
+  const postCount = Number(counter?.innerText);
+
+  function incrementCount(
+    id: string,
+    currentNum: number,
+    target: number,
+    duration: number
+  ) {
+    let counter = document.getElementById(id);
+    let stepTime = Math.abs(Math.floor(duration / target));
+    if (currentNum < target && counter) {
+      currentNum++;
+      counter.innerText = currentNum.toString();
+      setTimeout(
+        () => incrementCount(id, currentNum, target, duration),
+        stepTime
+      );
+    }
+  }
+
+  incrementCount('post-count', 0, postCount, 1000);
+</script>
