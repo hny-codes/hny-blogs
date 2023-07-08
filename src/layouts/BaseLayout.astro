@@ -30,7 +30,10 @@ const { pageTitle } = Astro.props;
   <body class='relative'>
     <Navbar />
     <ThemeSwap client:load />
-    <slot />
+    <div class='wrapper' id='swup'>
+      <slot />
+    </div>
     <Footer />
+    <script src='../lib/swup.js'></script>
   </body>
 </html>
