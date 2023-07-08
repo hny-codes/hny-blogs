@@ -99,5 +99,7 @@ const { page } = Astro.props;
     }
   }
 
-  incrementCount('post-count', 0, postCount, 1000);
+  document.addEventListener('swup:contentReplaced', () => {
+    incrementCount('post-count', 0, postCount, 1000);
+  });
 </script>
