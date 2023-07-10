@@ -74,7 +74,7 @@ const { page } = Astro.props;
       {
         page.url.prev ? (
           <a href={page.url.prev}>
-            <button class='join-item btn bg-accent hover:bg-accent-focus text-xl'>
+            <button class='join-item btn bg-accent hover:bg-accent-focus text-xl text-[hsl(var(--ac))]'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='32'
@@ -90,7 +90,7 @@ const { page } = Astro.props;
           </a>
         ) : (
           <a href={page.url.prev}>
-            <button class='join-item btn btn-disabled bg-accent hover:bg-accent-focus text-xl'>
+            <button class='join-item btn btn-disabled bg-accent hover:bg-accent-focus text-xl text-[hsl(var(--ac))]'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='32'
@@ -106,13 +106,13 @@ const { page } = Astro.props;
           </a>
         )
       }
-      <div class='btn join-item pointer-events-none bg-accent text-xl'>
+      <div class='btn join-item pointer-events-none bg-accent text-xl text-[hsl(var(--ac))]'>
         Page {page.currentPage}
       </div>
       {
         page.url.next ? (
           <a href={page.url.next}>
-            <button class='join-item btn bg-accent hover:bg-accent-focus text-xl'>
+            <button class='join-item btn bg-accent hover:bg-accent-focus text-xl text-[hsl(var(--ac))]'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='32'
@@ -128,7 +128,7 @@ const { page } = Astro.props;
           </a>
         ) : (
           <a href={page.url.next}>
-            <button class='join-item btn btn-disabled bg-accent hover:bg-accent-focus text-xl'>
+            <button class='join-item btn btn-disabled bg-accent hover:bg-accent-focus text-xl text-[hsl(var(--ac))]'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='32'
