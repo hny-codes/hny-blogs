@@ -21,6 +21,9 @@ const posts = entries.items.map((item) => {
   };
 });
 
+// Sort posts by date of publication
+posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
 // Filter for the latest 3 posts
 const latestPosts = posts.slice(0, 3);
 const pageTitle = 'hny-blogs';

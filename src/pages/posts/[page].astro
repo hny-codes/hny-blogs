@@ -21,6 +21,9 @@ export async function getStaticPaths({ paginate }: any) {
     };
   });
 
+  // Sort posts by date of publication
+  posts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
   return paginate(posts, { pageSize: 5 });
 }
 
