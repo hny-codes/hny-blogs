@@ -37,11 +37,11 @@ export async function getStaticPaths() {
         width=${node.data.target.fields.file.details.image.width} 
         alt=${node.data.target.fields.description} />`,
       [BLOCKS.HEADING_1]: (node) =>
-        `<h1 class='font-bold text-2xl mt-6'>
+        `<h1 class='font-bold text-4xl mt-6 mb-4'>
           ${(node.content[0] as Text).value}
         </h1>`,
       [BLOCKS.HEADING_2]: (node) =>
-        `<h2 class='font-bold text-xl mt-6'>
+        `<h2 class='font-bold text-2xl mt-6 mb-4'>
             ${(node.content[0] as Text).value}
         </h2>`,
       [INLINES.HYPERLINK]: (node) =>
@@ -121,7 +121,7 @@ const { content, title, date } = Astro.props;
     class='my-20 max-w-3xl mx-auto px-6 sm:px-2 bg-base-300 text-[hsl(var(--bc))] rounded-2xl'
   >
     <div class='mb-10 relative pt-6 sm:p-6'>
-      <h1 class='font-bold text-3xl sm:text-4xl w-fit pb-2'>
+      <h1 class='font-bold text-5xl sm:text-4xl w-fit pb-2'>
         {title}
       </h1>
       <time class='font-semibold'>{date}</time>
