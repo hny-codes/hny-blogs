@@ -23,11 +23,12 @@ Afterwards, run the project in dev mode:
 and that's it!
 
 ## Built with
-- Typescript (Vanilla)
+- Typescript
 - [Astro](https://astro.build/)
 - [Contentful](https://www.contentful.com/)
 - [Tailwind](https://tailwindcss.com/)
 - [Daisy UI](https://daisyui.com/)
+- [Swup](https://swup.js.org/)
 
 ## Useful Resources
 - [Rendering Assets and Entries in Contentful](https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/)
