@@ -74,6 +74,7 @@ const { page } = Astro.props;
       </ul>
     </div>
     <div class='join flex justify-center max-w-xl mx-auto mb-12'>
+      <!-- Show different arrows based on pagination state -->
       {
         page.url.prev ? (
           <a href={page.url.prev}>
