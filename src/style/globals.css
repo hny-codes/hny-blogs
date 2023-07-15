@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply bg-[url(/noise.svg)] bg-fixed
+  }
+
   p {
     @apply after:content-[''] after:inline-block after:w-0 
   }
