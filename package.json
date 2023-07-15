@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/image": "^0.17.1",
     "@astrojs/react": "^2.2.1",
+    "@astrojs/sitemap": "^1.4.0",
     "@astrojs/tailwind": "^4.0.0",
     "@contentful/rich-text-html-renderer": "^16.1.0",
     "@contentful/rich-text-types": "^16.2.0",
