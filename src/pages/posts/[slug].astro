@@ -31,7 +31,7 @@ export async function getStaticPaths() {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) =>
         `<img 
-        class='my-4'
+        class='my-4 mx-auto left-0 right-0'
         src=https:${node.data.target.fields.file.url} 
         height=${node.data.target.fields.file.details.image.height} 
         width=${node.data.target.fields.file.details.image.width} 
@@ -130,6 +130,6 @@ const { content, title, date } = Astro.props;
       >
       </div>
     </div>
-    <article class='sm:px-6 pb-6' set:html={content} />
+    <article class='sm:px-6 pb-6 relative' set:html={content} />
   </div>
 </BaseLayout>
