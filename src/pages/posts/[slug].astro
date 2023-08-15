@@ -105,6 +105,7 @@ export async function getStaticPaths() {
     params: { slug: item.fields.slug },
     props: {
       title: item.fields.title,
+      description: item.fields.description,
       content: documentToHtmlString(item.fields.content, renderOptions),
       date: new Date(item.fields.date).toLocaleDateString(),
     },
@@ -113,10 +114,10 @@ export async function getStaticPaths() {
   return pages;
 }
 
-const { content, title, date } = Astro.props;
+const { content, title, date, description } = Astro.props;
 ---
 
-<BaseLayout pageTitle={title}>
+<BaseLayout pageTitle={title} description={description}>
   <div
     class='my-20 max-w-4xl mx-auto px-6 sm:px-2 bg-base-300 text-[hsl(var(--bc))] rounded-2xl'
   >
