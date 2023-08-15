@@ -6,7 +6,7 @@ const pageTitle = 'hny-blogs | About';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class='mt-20'>
+  <main class='mt-20 mb-10'>
     <div class='max-w-2xl mx-auto flex flex-col items-center'>
       <div class='avatar'>
         <div class='w-56 rounded-full'>
@@ -23,14 +23,6 @@ const pageTitle = 'hny-blogs | About';
       <article class=''>
         <header class='text-center relative'>
           <h1 class='text-3xl font-bold pb-3'>Welcome to my blog!</h1>
-          <h2 class='text-sm w-3/4 mx-auto italic class'>
-            If you haven't yet, check out my <a
-              href='https://hny-codes.com'
-              target='_blank'
-              class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'
-              >portfolio about</a
-            >, <span class='line-through'>shameless plug</span>
-          </h2>
           <div
             class='w-fit p-1 opacity-0 bg-primary absolute left-5 top-9 sm:top-9 animate-hoverBarAnim'
           >
@@ -40,22 +32,38 @@ const pageTitle = 'hny-blogs | About';
           class='p-4 my-6 bg-base-200 rounded-md divide-y-2 divide-[hsl(var(--pc))]'
         >
           <section class='pb-4'>
-            <h1 class="text-xl sm:text-3xl font-bold mb-4"><span class="animate-bounce inline-block">👀</span> A Little About Myself</h1>
+            <h1 class='text-xl sm:text-3xl font-bold mb-4'>
+              <span class='animate-bounce inline-block'>👀</span> A Little About
+              Myself
+            </h1>
             <p>
               Sleep, eat, <span class='line-through'>game</span> program, the usual
-              shindig. I live for RPGs and am always in the hunt for new adventures. <span class="font-bold">Believe in victory! </span>
+              shindig. I live for RPGs and am always in the hunt for new adventures.
+              <span class='font-bold'>Believe in victory!</span>
             </p>
           </section>
-          <section class='py-4'>
-            <h1 class="text-xl sm:text-3xl font-bold mb-4">What To Expect From This Blog</h1>
+          <section class='py-4 [&>p]:py-2'>
+            <h1 class='text-xl sm:text-3xl font-bold mb-4'>
+              About This Blog..
+            </h1>
+            <p>
+              I created this blog for the sole purpose of talking about <span
+                class='font-bold'>myself!</span
+              > To me, being able to jot down my thoughts onto a blog helps me grow and
+              <span class="italic">develop</span> into a better developer.
+            </p>
             <p>
               Expect all sorts of rambling on this blog, especially on my
               <span class='font-bold'>experiences</span> learning new tooling, languages,
-              libraries, etc. I'm a simple man; I see something cool, I talk about it (assuming I'm not lazy).
+              libraries, etc. I'm a simple man; I see something cool, I talk about
+              it!
             </p>
           </section>
           <div class='pt-4'>
-            <h1 class="text-xl sm:text-3xl font-bold">Other Links</h1>
+            <h1 class='text-xl sm:text-3xl font-bold mb-4'>See more here!</h1>
+            <div>
+              <h2>My email:  <span class="pl-2 font-semibold">hny-codes@protonmail.com</span> </h2>
+            </div>
             <div class='flex gap-10 mt-4'>
               <a
                 href='https://github.com/hny-codes'
@@ -103,7 +111,7 @@ const pageTitle = 'hny-blogs | About';
               </a>
               <a
                 href='http://hny-codes.com/'
-                target="_blank"
+                target='_blank'
                 class='transition hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] group flex flex-col items-center'
               >
                 <svg
