@@ -39,6 +39,9 @@ const { pageTitle, description = defaultDesc } = Astro.props;
           image: '/profile.jpg',
           url: 'https://hny-blogs.vercel.app/',
         },
+        optional: {
+          description
+        }
       }}
       extend={{
         link: [{ rel: 'icon', href: '/favicon-32x32.png' }],
