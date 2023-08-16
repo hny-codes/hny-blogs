@@ -1,5 +1,7 @@
 # Hny-Blogs
-A personal blog, created with Astro and Contentful
+My own personal blog where I share thoughts and experiences about my journey as a developer. Created with Astro and Contentful CMS. 
+
+![](/public/screenshots/BlogScreenshot.png)
 
 ## Table of Contents
 - [Purpose](#purpose)
@@ -8,7 +10,9 @@ A personal blog, created with Astro and Contentful
 - [Useful Resources](#useful-resources)
 
 ## Purpose
-The purpose of this project is to create a personal blog while trying out [Contentful CMS](https://www.contentful.com/). Creating this project allowed me to learn more about content management systems (CMS) and get familiar with using one. In addition, this project allowed me to practice creating websites utilizing the Astro framework and the power behind it, such as built-in pagination and dynamic routes.
+The purpose of this project is to create a personal blog while trying out [Contentful CMS](https://www.contentful.com/). Creating this project allowed me to learn more about content management systems (CMS) and get familiar with using one. 
+
+In addition, this project allowed me to practice creating websites utilizing the Astro framework and the power behind it, such as built-in pagination and dynamic routes.
 
 ## Setup
 
