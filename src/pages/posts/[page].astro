@@ -43,7 +43,7 @@ const { page } = Astro.props;
   <main class='mt-20'>
     <div class='px-6 sm:px-2 pb-6 max-w-2xl mx-auto'>
       <div class='flex justify-between items-center mb-2'>
-        <h1 class='font-bold text-3xl relative'>
+        <h1 data-test="post-text" class='font-bold text-3xl relative'>
           All Posts <div
             class='w-0 p-1 opacity-0 bg-primary absolute left-0 top-8 sm:top-9 animate-hoverBarAnim'
           >
@@ -93,7 +93,7 @@ const { page } = Astro.props;
             </button>
           </a>
         ) : (
-          <a href={page.url.prev}>
+          <a data-test="prev-button-disabled" href={page.url.prev}>
             <button class='join-item btn btn-disabled bg-accent hover:bg-accent-focus text-xl text-[hsl(var(--ac))]'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -131,7 +131,7 @@ const { page } = Astro.props;
             </button>
           </a>
         ) : (
-          <a href={page.url.next}>
+          <a data-test="next-button-disabled" href={page.url.next}>
             <button class='join-item btn btn-disabled bg-accent hover:bg-accent-focus text-xl text-[hsl(var(--ac))]'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
