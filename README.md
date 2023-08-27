@@ -33,6 +33,7 @@ and that's it!
 - [Tailwind](https://tailwindcss.com/)
 - [Daisy UI](https://daisyui.com/)
 - [Swup](https://swup.js.org/)
+- Cypress
 
 ## Useful Resources
 - [Rendering Assets and Entries in Contentful](https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/)
@@ -40,3 +41,4 @@ and that's it!
 - [DaisyUI Documentation](https://daisyui.com/docs/use/)
 - [Tailwind Documentation](https://tailwindcss.com/docs/installation)
 - [Contentful Integration with Astro](https://docs.astro.build/en/guides/cms/contentful/)
+- [Cypress Assertions](https://docs.cypress.io/guides/references/assertions)
