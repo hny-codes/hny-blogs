@@ -33,8 +33,10 @@ const pageTitle = 'hny-blogs';
   <Hero />
   <div class='py-10 mt-5 bg-base-200 mb-10'>
     <div class='max-w-2xl mx-auto'>
-      <h1 class='text-3xl font-bold mb-4 text-center'>Latest Posts</h1>
-      <ul class='px-4 divide-y divide-[hsl(var(--pc))]'>
+      <h1 data-test='post-title' class='text-3xl font-bold mb-4 text-center'>
+        Latest Posts
+      </h1>
+      <ul data-test="home-post-list" class='px-4 divide-y divide-[hsl(var(--pc))]'>
         {
           latestPosts.map((post) => (
             <PostItem
