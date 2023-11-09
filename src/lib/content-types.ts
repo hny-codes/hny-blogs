@@ -12,6 +12,7 @@ export interface TypeBlogPostFields {
   slug: EntryFieldTypes.Symbol;
   description: EntryFieldTypes.Symbol;
   content: EntryFieldTypes.RichText;
+  body?: EntryFieldTypes.Text;
 }
 
 export type TypeBlogPostSkeleton = EntrySkeletonType<
