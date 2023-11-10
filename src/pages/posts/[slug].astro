@@ -39,6 +39,6 @@ const { title, date, description, body } = Astro.props;
       >
       </div>
     </div>
-    <article class='blog' set:html={marked.parse(body)} />
+    <article class='blog' set:html={marked.parse(body as string)} />
   </div>
 </BaseLayout>
