@@ -38,7 +38,7 @@
 
   /* Anchor */
   .blog > p > a {
-    @apply underline font-extrabold text-[hsl(var(--a))] hover:text-[hsl(var(--af))] active:hover:text-[hsl(var(--af))] transition;
+    @apply underline font-extrabold  text-[hsl(var(--a))] hover:text-[hsl(var(--af))] transition  ;
   }
 
   /* Quotes */
@@ -82,11 +82,11 @@
 
   /* Images & Assets */
   .blog > p > img {
-    @apply my-4 mx-auto left-0 right-0;
+    @apply my-4 mx-auto left-0 right-0 border-b-2 pb-4 border-b-[hsl(var(--p))];
   }
 
   /* References */
   .blog > ol > li > a {
-    @apply underline font-extrabold text-[hsl(var(--a))] hover:text-[hsl(var(--af))] active:hover:text-[hsl(var(--af))] transition;
+    @apply underline font-extrabold text-[hsl(var(--a))] hover:text-[hsl(var(--af))] transition;
   }
 }
