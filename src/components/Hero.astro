@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components';
+import { Image } from 'astro:assets';
 ---
 
 <main class='hero mt-5'>
@@ -27,7 +27,6 @@ import { Image } from '@astrojs/image/components';
         <div class='w-20 sm:w-24 rounded-full opacity-0 animate-heroAvatar'>
           <Image
             src={'/profile.jpg'}
-            aspectRatio={'1:1'}
             format='webp'
             width={300}
             height={300}
