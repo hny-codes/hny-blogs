@@ -1,8 +1,18 @@
 ---
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { marked } from 'marked';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
+
+// import { Marked } from 'marked';
+import { marked } from 'marked';
+
+// MARKDOWN IT
+// @ts-ignore
+import MarkdownIt from 'markdown-it';
+
+import { Code } from 'astro:components';
+
+import Article from '../../components/Article';
 
 export async function getStaticPaths() {
   const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
@@ -23,22 +33,34 @@ export async function getStaticPaths() {
 }
 
 const { title, date, description, body } = Astro.props;
+
+// Markdown to html transformation
+const renderer = {
+  code(code: string) {
+    return `<pre><code class="language-js">${code}</code></pre>`
+  },
+}
+
+marked.use({ renderer })
+
+const blogBody = marked.parse(body as string) as string;
 ---
 
 <BaseLayout pageTitle={title} description={description}>
   <div
-    class='my-20 max-w-4xl mx-auto px-6 sm:px-2 bg-base-300 text-[hsl(var(--bc))] rounded-2xl'
+    class='my-20 max-w-4xl mx-auto px-6 sm:px-2 bg-base-200 text-[hsl(var(--bc))] rounded-2xl'
   >
-    <div class='mb-10 relative pt-6 sm:p-6'>
-      <h1 class='font-bold text-5xl sm:text-4xl w-fit pb-2'>
+    <div class='mb-4 relative pt-6 sm:p-6'>
+      <h1 class='font-bold text-4xl sm:text-5xl w-fit pb-2'>
         {title}
       </h1>
       <time class='font-semibold'>{date}</time>
       <div
-        class='w-0 p-1 opacity-0 bg-primary absolute sm:left-6 -bottom-4 animate-hoverBarAnim'
+        class='w-0 p-1 opacity-0 bg-primary absolute sm:left-6 -bottom-4 '
       >
       </div>
     </div>
-    <article class='blog' set:html={marked.parse(body as string)} />
+    <Article body={blogBody as string} client:load />
+
   </div>
 </BaseLayout>
