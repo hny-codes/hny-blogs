@@ -1,8 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,svelte,vue,js,ts,jsx,tsx}'],
-  plugins: [require('daisyui')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
   theme: {
+    // https://github.com/tailwindlabs/tailwindcss/discussions/2021#discussioncomment-38253
+    typography: {
+      default: {
+        css: {
+          pre: null,
+          code: null,
+          'code::before': null,
+          'code::after': null,
+          'pre code': null,
+          'pre code::before': null,
+          'pre code::after': null,
+        },
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['"Poppins"', 'sans-serif'],

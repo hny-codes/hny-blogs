@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export default function ThemeSwap() {
-  const [theme, setTheme] = useState<string>(localStorage.getItem('theme') as string);
+  const [theme, setTheme] = useState<string>();
   const [check, setCheck] = useState(theme === 'retro' ? false : true);
 
   useEffect(() => {

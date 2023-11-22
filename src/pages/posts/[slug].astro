@@ -1,102 +1,20 @@
 ---
-import {
-  documentToHtmlString,
-  Options,
-} from '@contentful/rich-text-html-renderer';
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import {
-  BLOCKS,
-  INLINES,
-  Text,
-  Paragraph,
-  ListItem,
-  ListItemBlock,
-  Hyperlink,
-} from '@contentful/rich-text-types';
-// REFERENCE: https://github.com/contentful/rich-text/issues/395
-import crtt from '@contentful/rich-text-types';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 
+// import { Marked } from 'marked';
+import { marked } from 'marked';
+
+// MARKDOWN IT
+// @ts-ignore
+import MarkdownIt from 'markdown-it';
+
+import { Code } from 'astro:components';
+
+import Article from '../../components/Article';
+
 export async function getStaticPaths() {
-  // REFERENCE: https://www.contentful.com/blog/rendering-linked-assets-entries-in-contentful/
-  const renderOptions: Partial<Options> = {
-    renderMark: {
-      [crtt.MARKS.CODE]: (text) => {
-        return `<div class='mockup-code'>
-                  <pre data-prefix="$"><code>${text}</code></pre>
-                </div>`;
-      },
-    },
-    renderNode: {
-      [BLOCKS.EMBEDDED_ASSET]: (node) =>
-        `<img 
-        class='my-4 mx-auto left-0 right-0'
-        src=https:${node.data.target.fields.file.url} 
-        height=${node.data.target.fields.file.details.image.height} 
-        width=${node.data.target.fields.file.details.image.width} 
-        alt=${node.data.target.fields.description} />`,
-      [BLOCKS.HEADING_1]: (node) =>
-        `<h1 class='font-bold text-4xl mt-6 mb-4'>
-          ${(node.content[0] as Text).value}
-        </h1>`,
-      [BLOCKS.HEADING_2]: (node) =>
-        `<h2 class='font-bold text-2xl mt-6 mb-4'>
-            ${(node.content[0] as Text).value}
-        </h2>`,
-      [INLINES.HYPERLINK]: (node) =>
-        `<a 
-          href=${node.data.uri}
-          target='_blank'
-          class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'
-        >
-          ${(node.content[0] as Text).value}</a>`,
-      [BLOCKS.QUOTE]: (node) => {
-        const data = node.content[0] as Paragraph;
-        const text = data.content[0] as Text;
-        return `<blockquote class='pl-2 my-4 border-l-4 border-[hsl(var(--p))] italic'>
-          ${text.value}
-        </blockquote>`;
-      },
-      [BLOCKS.OL_LIST]: (node) => {
-        return `<ol class='my-6'>${(node.content as ListItem[])
-          .map((item) => {
-            // Type declarations
-            const listItemBlock = item.content[0] as ListItemBlock;
-
-            // Uri of the OL item
-            const liBlockEnum = listItemBlock.content[1];
-            const hyperlink = liBlockEnum as Hyperlink;
-
-            // Text value of the OL item
-            const text = listItemBlock.content[0] as Text;
-
-            // If the OL item has a uri, render with an anchor, otherwise a regular list item
-            return (listItemBlock.content[1] as Hyperlink)
-              ? `<li class='list-decimal ml-4 my-4 text-sm'>
-                <a href=${hyperlink.data.uri} class='underline font-extrabold hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] transition'>
-                  ${hyperlink.content[0].value}
-                </a>
-              </li>`
-              : `<li class='list-decimal ml-4 my-2 text-sm'>
-                ${text.value}
-              </li>`;
-          })
-          .join('')}</ol>`;
-      },
-      [BLOCKS.UL_LIST]: (node) => {
-        return `<ul class='my-6'>${(node.content as ListItem[])
-          .map((item) => {
-            const listItemBlock = item.content[0] as ListItemBlock;
-            const text = listItemBlock.content[0] as Text;
-            const value = text.value;
-            return `<li class='list-disc ml-4 my-4 text-sm'>${value}</li>`;
-          })
-          .join('')}</ul>`;
-      },
-    },
-  };
-
   const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
     content_type: 'blogPost',
   });
@@ -106,31 +24,43 @@ export async function getStaticPaths() {
     props: {
       title: item.fields.title,
       description: item.fields.description,
-      content: documentToHtmlString(item.fields.content, renderOptions),
       date: new Date(item.fields.date).toLocaleDateString(),
+      body: item.fields.body,
     },
   }));
 
   return pages;
 }
 
-const { content, title, date, description } = Astro.props;
+const { title, date, description, body } = Astro.props;
+
+// Markdown to html transformation
+const renderer = {
+  code(code: string) {
+    return `<pre><code class="language-js">${code}</code></pre>`
+  },
+}
+
+marked.use({ renderer })
+
+const blogBody = marked.parse(body as string) as string;
 ---
 
 <BaseLayout pageTitle={title} description={description}>
   <div
-    class='my-20 max-w-4xl mx-auto px-6 sm:px-2 bg-base-300 text-[hsl(var(--bc))] rounded-2xl'
+    class='my-20 max-w-4xl mx-auto px-6 sm:px-2 bg-base-200 text-[hsl(var(--bc))] rounded-2xl'
   >
-    <div class='mb-10 relative pt-6 sm:p-6'>
-      <h1 class='font-bold text-5xl sm:text-4xl w-fit pb-2'>
+    <div class='mb-4 relative pt-6 sm:p-6'>
+      <h1 class='font-bold text-4xl sm:text-5xl w-fit pb-2'>
         {title}
       </h1>
       <time class='font-semibold'>{date}</time>
       <div
-        class='w-0 p-1 opacity-0 bg-primary absolute sm:left-6 -bottom-4 animate-hoverBarAnim'
+        class='w-0 p-1 opacity-0 bg-primary absolute sm:left-6 -bottom-4 '
       >
       </div>
     </div>
-    <article class='sm:px-6 pb-6 relative' set:html={content} />
+    <Article body={blogBody as string} client:load />
+
   </div>
 </BaseLayout>
