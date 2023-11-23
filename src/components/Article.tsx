@@ -1,5 +1,4 @@
 import Prism from 'prismjs';
-import '../style/prism.css';
 import { useEffect } from 'react';
 
 type Props = {
