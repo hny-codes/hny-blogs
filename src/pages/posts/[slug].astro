@@ -2,16 +2,7 @@
 import { contentfulClient } from '../../lib/contentful';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
-
-// import { Marked } from 'marked';
 import { marked } from 'marked';
-
-// MARKDOWN IT
-// @ts-ignore
-import MarkdownIt from 'markdown-it';
-
-import { Code } from 'astro:components';
-
 import Article from '../../components/Article';
 
 export async function getStaticPaths() {
