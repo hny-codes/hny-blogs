@@ -7,3 +7,9 @@
     @apply bg-[url(/noise.svg)] bg-fixed;
   }
 }
+
+@layer components {
+  .hover-bar {
+    @apply rounded-l-full rounded-r-full;
+  }
+}

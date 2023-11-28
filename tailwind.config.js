@@ -30,6 +30,10 @@ module.exports = {
           '0%': { width: '0', opacity: '1' },
           '100%': { width: '95%', opacity: '1' },
         },
+        hoverBarFull: {
+          '0%': { width: '0', opacity: '1' },
+          '100%': { width: '100%', opacity: '1' },
+        },
         popWeb: {
           '0%': { transform: 'scale(0) rotate(-10deg)', opacity: '1' },
           '80%': { transform: 'scale(1.5) rotate(-10deg) ', opacity: '1' },
@@ -66,6 +70,7 @@ module.exports = {
       animation: {
         hoverBarAnim: 'hoverBar 0.3s ease-in 1s forwards',
         hoverNav: 'hoverBarNav 0.3s ease-in-out forwards',
+        hoverBarFull: 'hoverBarFull 0.3s ease-in-out 1s forwards',
         heroWeb:
           'popWeb 0.3s cubic-bezier(.39,.87,.91,.48) 0.3s forwards, webHover 2s ease 0.6s infinite',
         heroProgram:
