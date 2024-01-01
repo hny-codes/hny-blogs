@@ -27,6 +27,11 @@ export default function Article({ body }: Props) {
         prose-h3:text-2xl
         prose-h3:mt-6
 
+        // Header 4
+        prose-h4:font-bold
+        prose-h4:text-xl
+        prose-h4:mt-6
+
         // Anchor
         prose-a:underline
         prose-a:font-bold
