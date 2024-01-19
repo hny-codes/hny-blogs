@@ -25,7 +25,10 @@ export default function ShareButton({ url, social }: Props) {
 
   return (
     <>
-      <button className='btn rounded-3xl' onClick={handleLink}>
+      <button
+        className='btn rounded-3xl border-2 hover:border-[hsl(var(--a))]'
+        onClick={handleLink}
+      >
         {/* Twitter */}
         {social === 'Twitter' && (
           <a href={`https://twitter.com/intent/tweet?text=${url}`}>
