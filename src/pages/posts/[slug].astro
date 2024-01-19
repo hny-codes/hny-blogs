@@ -5,6 +5,7 @@ import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 import { marked } from 'marked';
 import Article from '../../components/Article';
 import ShareButton from '../../components/ShareButton';
+import ToTopButton from '../../components/ToTopButton';
 
 export async function getStaticPaths() {
   const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
@@ -41,7 +42,7 @@ const url = Astro.url;
 
 <BaseLayout pageTitle={title} description={description}>
   <div class='my-20 max-w-4xl mx-auto text-[hsl(var(--bc))] rounded-2xl'>
-    <div class='bg-base-200 px-6 sm:px-2'>
+    <div class='bg-base-200 px-6 sm:px-2 relative'>
       <div class='mb-4 relative pt-6 sm:p-6'>
         <h1 class='font-bold text-4xl sm:text-5xl w-fit pb-2'>
           {title}
@@ -51,6 +52,7 @@ const url = Astro.url;
         </div>
       </div>
       <Article body={blogBody as string} client:load />
+      <ToTopButton client:load />
     </div>
     <div class='px-2 sm:px-0 mt-4 flex gap-6 justify-center'>
       <ShareButton client:load url={url.toString()} social='Link' />
