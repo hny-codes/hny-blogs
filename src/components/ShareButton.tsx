@@ -63,7 +63,7 @@ export default function ShareButton({ url, social }: Props) {
       </button>
       {social === 'Link' && (
         <span
-          className={`toast toast-center origin-left sm:px-10 transition-all absolute bottom-10 ${
+          className={`toast toast-center origin-left xl:px-10 transition-all absolute bottom-12 ${
             !view ? 'invisible animate-toastExit' : 'visible animate-toastEnter'
           }`}
         >
