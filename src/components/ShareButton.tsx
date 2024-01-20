@@ -61,13 +61,17 @@ export default function ShareButton({ url, social }: Props) {
           </svg>
         )}
       </button>
-      <span
-        className={`toast toast-center origin-left sm:px-10 transition-all ${
-          !view ? 'invisible animate-toastExit' : 'visible animate-toastEnter'
-        }`}
-      >
-        <span className='alert alert-info sm:pr-0 font-semibold'>Copied !</span>
-      </span>
+      {social === 'Link' && (
+        <span
+          className={`toast toast-center origin-left sm:px-10 transition-all absolute bottom-10 ${
+            !view ? 'invisible animate-toastExit' : 'visible animate-toastEnter'
+          }`}
+        >
+          <span className='alert alert-info sm:pr-0 font-semibold'>
+            Copied !
+          </span>
+        </span>
+      )}
     </>
   );
 }
