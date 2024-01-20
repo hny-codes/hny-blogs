@@ -48,3 +48,4 @@ and that's it!
 - [Cypress Assertions](https://docs.cypress.io/guides/references/assertions)
 - [Marked Documentation](https://marked.js.org/)
 - [Prismjs Documentation](https://prismjs.com/)
+- [Icones SVG Icons](https://icones.js.org/)
