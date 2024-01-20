@@ -3,6 +3,9 @@ import useScrollPosition from '../hooks/useScrollPosition';
 export default function ToTopButton() {
   const [position] = useScrollPosition();
 
+  // Vertical distance of scroll bar, adjust to change visibility of button
+  const scrollLimit = 200;
+
   const handleClick = () => {
     document.documentElement.scrollTop = 0;
   };
@@ -11,7 +14,7 @@ export default function ToTopButton() {
     <button
       onClick={handleClick}
       className={`btn rounded-3xl border-2 border-[hsl(var(--pf))] bg-[hsl(var(--p))] hover:bg-[hsl(var(--pf))] fill-[hsl(var(--pf))] fixed bottom-20 right-4 lg:right-16 xl:right-32 2xl:right-64 px-2  ${
-        position > 200 ? 'block' : 'hidden'
+        position > scrollLimit ? 'block' : 'hidden'
       }`}
     >
       <svg
