@@ -40,8 +40,8 @@ const { pageTitle, description = defaultDesc } = Astro.props;
           url: 'https://hny-blogs.vercel.app/',
         },
         optional: {
-          description
-        }
+          description,
+        },
       }}
       extend={{
         link: [{ rel: 'icon', href: '/favicon-32x32.png' }],
@@ -52,15 +52,14 @@ const { pageTitle, description = defaultDesc } = Astro.props;
       }}
       charset='utf-8'
     />
-    <link href="/prism.css" rel="stylesheet" />
+    <link href='/prism.css' rel='stylesheet' />
   </head>
   <body class='relative'>
     <Navbar />
     <ThemeSwap client:load />
-    <div class='wrapper' id='swup'>
+    <div>
       <slot />
     </div>
     <Footer />
-    <script src='../lib/swup.js'></script>
   </body>
 </html>
