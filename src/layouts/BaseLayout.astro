@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ThemeSwap from '../components/ThemeSwap';
 import { SEO } from 'astro-seo';
+import { ViewTransitions } from 'astro:transitions';
+
 const defaultDesc =
   'A personal blog, where I talk about myself and my experiences!';
 
@@ -14,16 +16,19 @@ interface Props {
 const { pageTitle, description = defaultDesc } = Astro.props;
 ---
 
-<html lang='en'>
+<html lang='en' transition:animate='fade'>
   <head>
-    <script is:inline>
-      if (localStorage.getItem('theme') === null) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else
-        document.documentElement.setAttribute(
-          'data-theme',
-          localStorage.getItem('theme')
-        );
+    <ViewTransitions />
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        if (localStorage.getItem('theme') === null) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else
+          document.documentElement.setAttribute(
+            'data-theme',
+            localStorage.getItem('theme') as string
+          );
+      });
     </script>
     <script>
       import { themeChange } from 'theme-change';
@@ -56,10 +61,24 @@ const { pageTitle, description = defaultDesc } = Astro.props;
   </head>
   <body class='relative'>
     <Navbar />
-    <ThemeSwap client:load />
+
+    <!-- transition:persist to retain theme change upon page  change -->
+    <ThemeSwap client:load transition:persist />
     <div>
       <slot />
     </div>
     <Footer />
+    <script>
+      // Check for localstorage's theme after new page is loaded
+      // TODO - Light mode flicker upon initial page load
+      document.addEventListener('astro:after-swap', () => {
+        localStorage.getItem('theme') === null
+          ? document.documentElement.setAttribute('data-theme', 'dark')
+          : document.documentElement.setAttribute(
+              'data-theme',
+              localStorage.getItem('theme') as string
+            );
+      });
+    </script>
   </body>
 </html>
