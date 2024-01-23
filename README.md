@@ -49,3 +49,4 @@ and that's it!
 - [Marked Documentation](https://marked.js.org/)
 - [Prismjs Documentation](https://prismjs.com/)
 - [Icones SVG Icons](https://icones.js.org/)
+- [Astro URL methods](https://docs.astro.build/en/reference/api-reference/#astrourl)
