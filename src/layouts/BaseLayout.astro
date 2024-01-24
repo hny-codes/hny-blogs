@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import ThemeSwap from '../components/ThemeSwap';
 import { SEO } from 'astro-seo';
 import { ViewTransitions } from 'astro:transitions';
+import { fade } from 'astro:transitions';
 
 const defaultDesc =
   'A personal blog, where I talk about myself and my experiences!';
@@ -16,7 +17,7 @@ interface Props {
 const { pageTitle, description = defaultDesc } = Astro.props;
 ---
 
-<html lang='en' transition:animate='fade'>
+<html lang='en' class='overflow-x-hidden' transition:animate='none'>
   <head>
     <ViewTransitions />
     <script>
@@ -60,14 +61,14 @@ const { pageTitle, description = defaultDesc } = Astro.props;
     <link href='/prism.css' rel='stylesheet' />
   </head>
   <body class='relative'>
-    <Navbar />
+    <Navbar transition:persist />
 
     <!-- transition:persist to retain theme change upon page  change -->
     <ThemeSwap client:load transition:persist />
-    <div>
+    <div transition:animate={fade({ duration: '0.4s' })}>
       <slot />
     </div>
-    <Footer />
+    <Footer transition:persist />
     <script>
       // Check for localstorage's theme after new page is loaded
       // TODO - Light mode flicker upon initial page load
