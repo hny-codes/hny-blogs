@@ -20,16 +20,14 @@ const { pageTitle, description = defaultDesc } = Astro.props;
 <html lang='en' class='overflow-x-hidden' transition:animate='none'>
   <head>
     <ViewTransitions />
-    <script>
-      document.addEventListener('astro:page-load', () => {
-        if (localStorage.getItem('theme') === null) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else
-          document.documentElement.setAttribute(
-            'data-theme',
-            localStorage.getItem('theme') as string
-          );
-      });
+    <script is:inline>
+      if (localStorage.getItem('theme') === null) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else
+        document.documentElement.setAttribute(
+          'data-theme',
+          localStorage.getItem('theme')
+        );
     </script>
     <script>
       import { themeChange } from 'theme-change';
@@ -71,7 +69,6 @@ const { pageTitle, description = defaultDesc } = Astro.props;
     <Footer transition:persist />
     <script>
       // Check for localstorage's theme after new page is loaded
-      // TODO - Light mode flicker upon initial page load
       document.addEventListener('astro:after-swap', () => {
         localStorage.getItem('theme') === null
           ? document.documentElement.setAttribute('data-theme', 'dark')
