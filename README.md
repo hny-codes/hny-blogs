@@ -50,3 +50,4 @@ and that's it!
 - [Prismjs Documentation](https://prismjs.com/)
 - [Icones SVG Icons](https://icones.js.org/)
 - [Astro URL methods](https://docs.astro.build/en/reference/api-reference/#astrourl)
+- [Astro View Transition Documentation](https://docs.astro.build/en/guides/view-transitions/#_top)
