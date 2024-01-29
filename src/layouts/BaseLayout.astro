@@ -3,6 +3,9 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ThemeSwap from '../components/ThemeSwap';
 import { SEO } from 'astro-seo';
+import { ViewTransitions } from 'astro:transitions';
+import { fade } from 'astro:transitions';
+
 const defaultDesc =
   'A personal blog, where I talk about myself and my experiences!';
 
@@ -14,8 +17,9 @@ interface Props {
 const { pageTitle, description = defaultDesc } = Astro.props;
 ---
 
-<html lang='en'>
+<html lang='en' class='overflow-x-hidden' transition:animate='none'>
   <head>
+    <ViewTransitions />
     <script is:inline>
       if (localStorage.getItem('theme') === null) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -40,8 +44,8 @@ const { pageTitle, description = defaultDesc } = Astro.props;
           url: 'https://hny-blogs.vercel.app/',
         },
         optional: {
-          description
-        }
+          description,
+        },
       }}
       extend={{
         link: [{ rel: 'icon', href: '/favicon-32x32.png' }],
@@ -52,15 +56,27 @@ const { pageTitle, description = defaultDesc } = Astro.props;
       }}
       charset='utf-8'
     />
-    <link href="/prism.css" rel="stylesheet" />
+    <link href='/prism.css' rel='stylesheet' />
   </head>
   <body class='relative'>
-    <Navbar />
-    <ThemeSwap client:load />
-    <div class='wrapper' id='swup'>
+    <Navbar transition:persist />
+
+    <!-- transition:persist to retain theme change upon page  change -->
+    <ThemeSwap client:load transition:persist />
+    <div transition:animate={fade({ duration: '0.4s' })}>
       <slot />
     </div>
-    <Footer />
-    <script src='../lib/swup.js'></script>
+    <Footer transition:persist />
+    <script>
+      // Check for localstorage's theme after new page is loaded
+      document.addEventListener('astro:after-swap', () => {
+        localStorage.getItem('theme') === null
+          ? document.documentElement.setAttribute('data-theme', 'dark')
+          : document.documentElement.setAttribute(
+              'data-theme',
+              localStorage.getItem('theme') as string
+            );
+      });
+    </script>
   </body>
 </html>

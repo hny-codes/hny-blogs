@@ -66,6 +66,14 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0px) rotate(10deg)' },
           '50%': { transform: 'translateY(10px) rotate(10deg)' },
         },
+        toastEnter: {
+          '0%': { scale: 0 },
+          '100%': { scale: 100 },
+        },
+        toastExit: {
+          '0%': { scale: 100 },
+          '100%': { scale: 0 },
+        },
       },
       animation: {
         hoverBarAnim: 'hoverBar 0.3s ease-in 1s forwards',
@@ -79,6 +87,8 @@ module.exports = {
           'popLife 0.3s cubic-bezier(.39,.87,.91,.48) 0.9s forwards, lifeHover 2s ease 1.2s infinite',
         heroAvatar: 'popAvatar 0.3s cubic-bezier(.39,.87,.91,.48) 1s forwards',
         popHover: 'popHover 1s ease infinite',
+        toastEnter: 'toastEnter 0.1s ease-in forwards',
+        toastExit: 'toastExit 0.1s ease-out forwards',
       },
     },
   },

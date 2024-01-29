@@ -37,7 +37,7 @@ export default function Article({ body }: Props) {
         prose-a:font-bold
         prose-a:stroke-gray-800
         prose-a:transition
-        prose-a:text-[hsl(var(--af))]
+        prose-a:text-[hsl(var(--ac))]
         prose-a:drop-shadow-none
         hover:prose-a:drop-shadow-[0_1px_1px_hsl(var(--a))]
 

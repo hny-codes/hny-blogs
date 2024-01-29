@@ -4,6 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import type { TypeBlogPostSkeleton } from '../../lib/content-types';
 import { marked } from 'marked';
 import Article from '../../components/Article';
+import ShareButton from '../../components/ShareButton';
+import ToTopButton from '../../components/ToTopButton';
 
 export async function getStaticPaths() {
   const entries = await contentfulClient.getEntries<TypeBlogPostSkeleton>({
@@ -28,30 +30,37 @@ const { title, date, description, body } = Astro.props;
 // Markdown to html transformation
 const renderer = {
   code(code: string) {
-    return `<pre><code class="language-js">${code}</code></pre>`
+    return `<pre><code class="language-js">${code}</code></pre>`;
   },
-}
+};
 
-marked.use({ renderer })
+marked.use({ renderer });
 
 const blogBody = marked.parse(body as string) as string;
+const url = Astro.url;
 ---
 
 <BaseLayout pageTitle={title} description={description}>
   <div
-    class='my-20 max-w-4xl mx-auto px-6 sm:px-2 bg-base-200 text-[hsl(var(--bc))] rounded-2xl'
+    class='my-20 max-w-4xl mx-auto text-[hsl(var(--bc))] rounded-2xl relative'
   >
-    <div class='mb-4 relative pt-6 sm:p-6'>
-      <h1 class='font-bold text-4xl sm:text-5xl w-fit pb-2'>
-        {title}
-      </h1>
-      <time class='font-semibold'>{date}</time>
-      <div
-        class='w-0 p-1 opacity-0 bg-primary absolute sm:left-6 -bottom-4 '
-      >
+    <div class='bg-base-200 px-6 sm:px-2 relative'>
+      <div class='mb-4 relative pt-6 sm:p-6'>
+        <h1 class='font-bold text-4xl sm:text-5xl w-fit pb-2'>
+          {title}
+        </h1>
+        <time class='font-semibold italic'>{date}</time>
+        <div class='w-0 p-1 opacity-0 bg-primary absolute sm:left-6 -bottom-4'>
+        </div>
       </div>
+      <Article body={blogBody as string} client:load />
+      <ToTopButton client:load />
     </div>
-    <Article body={blogBody as string} client:load />
-
+    <div
+      class='px-2 xl:px-0 mt-4 xl:mt-0 flex justify-center xl:flex-col gap-6 xl:w-fit xl:fixed bottom-20 left-4 lg:left-16 xl:left-28 2xl:left-60'
+    >
+      <ShareButton client:load url={url.toString()} social='Link' />
+      <ShareButton client:load url={url.toString()} social='Twitter' />
+    </div>
   </div>
 </BaseLayout>

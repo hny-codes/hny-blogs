@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply bg-[url(/noise.svg)] bg-fixed;
+    @apply bg-[url(/noise.svg)] bg-fixed scroll-smooth;
   }
 }
 

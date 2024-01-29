@@ -1,5 +1,17 @@
 ---
 import '../style/globals.css';
+
+const paths = {
+  about: '/about',
+  posts: '/posts',
+};
+
+const pathname: string = Astro.url.pathname;
+
+// Check paths
+const homePath = /^\/$/.test(pathname); // Matches Home route
+const aboutPath = pathname.includes(paths.about); // Matches About route
+const postPath = pathname.includes(paths.posts); // Matches all Post routes
 ---
 
 <nav
@@ -11,7 +23,9 @@ import '../style/globals.css';
     <a
       data-test='about-link'
       href='/about'
-      class='text-lg pr-4 relative group hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] hover:transition'
+      class={`text-lg pr-4 relative group hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] hover:transition ${
+        aboutPath && 'text-[hsl(var(--a))]'
+      }`}
       >About <div
         class='w-0 p-0.5 opacity-0 bg-accent absolute -left-1 -bottom-2 group-hover:animate-hoverNav'
       >
@@ -20,7 +34,9 @@ import '../style/globals.css';
     <a
       data-test='home-link'
       href='/'
-      class='uppercase text-2xl px-4 relative group hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] hover:transition'
+      class={`uppercase text-2xl px-4 relative group hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] hover:transition ${
+        homePath && 'text-[hsl(var(--a))]'
+      }`}
       >hny-blogs <div
         class='w-0 p-0.5 opacity-0 bg-accent absolute left-1 -bottom-2 group-hover:animate-hoverNav'
       >
@@ -29,7 +45,9 @@ import '../style/globals.css';
     <a
       data-test='post-link'
       href='/posts/1'
-      class='text-lg pl-4 relative group hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] hover:transition'
+      class={`text-lg pl-4 relative group hover:text-[hsl(var(--a))] active:hover:text-[hsl(var(--af))] hover:transition ${
+        postPath && 'text-[hsl(var(--a))]'
+      }`}
       >Posts <div
         class='w-0 p-0.5 opacity-0 bg-accent absolute left-3 -bottom-2 group-hover:animate-hoverNav'
       >

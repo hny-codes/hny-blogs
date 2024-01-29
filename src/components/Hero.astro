@@ -4,27 +4,27 @@ import { Image } from 'astro:assets';
 
 <main class='hero mt-5'>
   <div class='relative'>
-    <div class='chat chat-end'>
-      <span
-        class='absolute text-3xl drop-shadow-2xl font-bold rotate-[-10deg] left-8 sm:left-40 top-32 opacity-0 animate-heroWeb chat-bubble-primary chat-bubble'
-        >Web</span
-      >
-    </div>
-    <div class='chat chat-start'>
-      <span
-        class='absolute text-3xl drop-shadow-2xl font-bold rotate-[30deg] right-8 sm:right-44 top-16 sm:top-20 opacity-0 animate-heroProgram chat-bubble-primary chat-bubble'
-        >Code</span
-      >
-    </div>
-    <div class='chat chat-start'>
-      <span
-        class='absolute text-xl sm:text-3xl drop-shadow-2xl font-bold rotate-[10deg] right-8 sm:right-36 top-36 sm:top-44 opacity-0 animate-heroLife chat-bubble-primary chat-bubble'
-        >..Life?</span
-      >
-    </div>
     <div class='text-center pt-32'>
-      <div class='avatar'>
-        <div class='w-20 sm:w-24 rounded-full opacity-0 animate-heroAvatar'>
+      <div class='avatar relative'>
+        <div class='chat chat-end'>
+          <span
+            class='absolute text-xl drop-shadow-2xl font-bold rotate-[-10deg] -left-24 sm:-left-28 top-0 opacity-0 animate-heroWeb chat-bubble-primary chat-bubble'
+            >Web</span
+          >
+        </div>
+        <div class='chat chat-start'>
+          <span
+            class='absolute text-xl drop-shadow-2xl font-bold rotate-[30deg] -right-24 sm:-right-28 -top-8 sm:-top-8 opacity-0 animate-heroProgram chat-bubble-primary chat-bubble'
+            >Code</span
+          >
+        </div>
+        <div class='chat chat-start'>
+          <span
+            class='absolute text-xl sm:text-3xl drop-shadow-2xl font-bold rotate-[10deg] -right-28 sm:-right-32 top-14 sm:top-16 opacity-0 animate-heroLife chat-bubble-primary chat-bubble'
+            >Life?</span
+          >
+        </div>
+        <div class='w-28 sm:w-32 rounded-full opacity-0 animate-heroAvatar'>
           <Image
             src={'/profile.jpg'}
             format='webp'

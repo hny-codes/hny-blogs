@@ -12,7 +12,7 @@ export default function ThemeSwap() {
 
 
   return (
-    <label className='swap swap-rotate fixed bottom-1.5 left-4 sm:left-1/4 md:left-1/3 z-50 hover:text-[hsl(var(--a))] hover:transition active:hover:text-[hsl(var(--af))]'>
+    <label className='swap swap-rotate fixed bottom-1.5 right-4 sm:right-1/4 md:right-[30%] z-50 hover:text-[hsl(var(--a))] hover:transition active:hover:text-[hsl(var(--af))]'>
       <input
         type='checkbox'
         id='check'
